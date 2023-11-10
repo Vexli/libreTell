@@ -60,6 +60,22 @@
       "paint": {"fill-color": "#bbddee"}
     },
     {
+      "id": "water-way-tunnel",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "filter": ["all", ["==", "brunnel", "tunnel"]],
+      "paint": {"line-color": "#bbddee", "line-dasharray": [2, 2]}
+    },
+    {
+      "id": "water-way",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "filter": ["all", ["!=", "brunnel", "tunnel"]],
+      "paint": {"line-color": "#bbddee"}
+    },
+    {
       "id": "boundary-4-background-copy",
       "type": "line",
       "source": "openmaptiles",
@@ -69,7 +85,7 @@
       "layout": {"line-cap": "round", "line-join": "miter"},
       "paint": {
         "line-color": "rgba(255, 187, 187, 1)",
-        "line-width": {"stops": [[0, 1], [8, 5]]},
+        "line-width": {"stops": [[0, 0.5], [8, 2], [9, 2]]},
         "line-opacity": 1
       }
     },
@@ -91,9 +107,9 @@
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "boundary",
-      "minzoom": 6,
+      "minzoom": 10,
       "filter": ["all", ["==", "admin_level", 4]],
-      "paint": {"line-color": "rgba(255, 0, 0, 1)", "line-width": 0.5}
+      "paint": {"line-color": "rgba(255, 0, 0, 1)", "line-width": 0.25}
     },
     {
       "id": "boundary-2",
@@ -103,6 +119,44 @@
       "filter": ["all", ["==", "admin_level", 2]],
       "layout": {"line-cap": "butt", "line-join": "miter"},
       "paint": {"line-color": "#FF0000"}
+    },
+    {
+      "id": "water-way-name",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "filter": ["all", ["==", "$type", "LineString"]],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Open Sans Regular"],
+        "text-max-width": 5,
+        "text-size": 12,
+        "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "rgba(0, 102, 119, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "water-name",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "water_name",
+      "filter": ["all", ["==", "$type", "LineString"]],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Open Sans Regular"],
+        "text-max-width": 5,
+        "text-size": 12,
+        "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "rgba(0, 102, 119, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": 1
+      }
     },
     {
       "id": "road-path-tunnel",
@@ -567,7 +621,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 5,
+      "minzoom": 4,
       "maxzoom": 12,
       "filter": ["all", ["==", "class", "city"]],
       "layout": {
