@@ -34,6 +34,16 @@
       "paint": {"fill-color": "#ddeedd"}
     },
     {
+      "id": "landcover-ice",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "minzoom": 2,
+      "filter": ["all", ["==", "class", "ice"]],
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(221, 238, 255, 0.6)"}
+    },
+    {
       "id": "landuse-human",
       "type": "fill",
       "source": "openmaptiles",
@@ -140,7 +150,7 @@
       }
     },
     {
-      "id": "water-name",
+      "id": "water-name-line",
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "water_name",
@@ -151,6 +161,25 @@
         "text-max-width": 5,
         "text-size": 12,
         "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "rgba(0, 102, 119, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "water-name",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "water_name",
+      "filter": ["all", ["==", "$type", "Point"]],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Open Sans Regular"],
+        "text-max-width": 5,
+        "text-size": 12,
+        "symbol-placement": "point"
       },
       "paint": {
         "text-color": "rgba(0, 102, 119, 1)",
